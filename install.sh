@@ -5,11 +5,11 @@ set -e
 # AI Grad Course: One-Command Installer
 # ============================================================
 #
-# Usage:
-#   curl -sSL https://raw.githubusercontent.com/Codefied/Innovation-Playground/main/install.sh | bash
+# Usage (private repo — requires GitHub CLI auth):
+#   gh api repos/Codefied/Innovation-Playground/contents/install.sh --jq '.content' | base64 -d | bash
 #
 # What this does:
-#   1. Checks prerequisites (Node.js 18+, git)
+#   1. Checks prerequisites (Node.js 18+, git, gh CLI)
 #   2. Installs Claude Code globally
 #   3. Clones the course repo to ~/ai-grad-course
 #   4. Sets up ~/.claude/ config directory with starter templates
@@ -31,7 +31,7 @@ NC='\033[0m' # No Color
 
 print_step() {
     echo ""
-    echo -e "${BLUE}${BOLD}[$1/6]${NC} ${BOLD}$2${NC}"
+    echo -e "${BLUE}${BOLD}[$1/7]${NC} ${BOLD}$2${NC}"
     echo "─────────────────────────────────────────"
 }
 
@@ -113,9 +113,36 @@ else
 fi
 
 # ===========================================================
-# Step 3: Install Claude Code
+# Step 3: Check GitHub CLI (needed for private repo access)
 # ===========================================================
-print_step 3 "Installing Claude Code..."
+print_step 3 "Checking GitHub CLI..."
+
+if command -v gh &> /dev/null; then
+    # Check if authenticated
+    if gh auth status &> /dev/null; then
+        print_ok "GitHub CLI installed and authenticated"
+    else
+        print_warn "GitHub CLI installed but not authenticated."
+        echo "  Run: gh auth login"
+        echo "  (Select GitHub.com, HTTPS, and authenticate via browser)"
+        exit 1
+    fi
+else
+    print_fail "GitHub CLI (gh) not found."
+    echo ""
+    echo "  Install with Homebrew:"
+    echo "    brew install gh"
+    echo ""
+    echo "  Then authenticate:"
+    echo "    gh auth login"
+    echo ""
+    exit 1
+fi
+
+# ===========================================================
+# Step 4: Install Claude Code
+# ===========================================================
+print_step 4 "Installing Claude Code..."
 
 if command -v claude &> /dev/null; then
     print_ok "Claude Code already installed ($(claude --version 2>/dev/null || echo 'version unknown'))"
@@ -132,9 +159,9 @@ else
 fi
 
 # ===========================================================
-# Step 4: Clone the course repo
+# Step 5: Clone the course repo
 # ===========================================================
-print_step 4 "Cloning course materials..."
+print_step 5 "Cloning course materials..."
 
 if [ -d "$COURSE_DIR" ]; then
     print_warn "Directory $COURSE_DIR already exists."
@@ -143,14 +170,14 @@ if [ -d "$COURSE_DIR" ]; then
     print_ok "Course materials updated"
 else
     echo "  Cloning to $COURSE_DIR..."
-    git clone "$REPO_URL" "$COURSE_DIR"
+    gh repo clone Codefied/Innovation-Playground "$COURSE_DIR"
     print_ok "Course materials cloned to $COURSE_DIR"
 fi
 
 # ===========================================================
-# Step 5: Set up ~/.claude/ config
+# Step 6: Set up ~/.claude/ config
 # ===========================================================
-print_step 5 "Setting up Claude Code config..."
+print_step 6 "Setting up Claude Code config..."
 
 # Create directory structure
 mkdir -p "$CLAUDE_DIR/rules"
@@ -183,9 +210,9 @@ else
 fi
 
 # ===========================================================
-# Step 6: Done!
+# Step 7: Done!
 # ===========================================================
-print_step 6 "Setup complete!"
+print_step 7 "Setup complete!"
 
 echo ""
 echo -e "${GREEN}${BOLD}  You're almost ready to start learning!${NC}"
