@@ -1,0 +1,16 @@
+{
+  "name": "ai-grad-sandbox",
+  "version": "1.0.0",
+  "description": "Interactive exercises for learning Claude Code",
+  "private": true,
+  "scripts": {
+    "exercise:01": "node exercises/01-hello-claude.js",
+    "exercise:02": "node exercises/02-build-your-claudemd.js",
+    "exercise:03": "node exercises/03-skills-and-agents.js",
+    "exercise:04": "node exercises/04-mcp-and-tools.js",
+    "exercise:05": "node exercises/05-meta-game.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

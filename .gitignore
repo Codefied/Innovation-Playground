@@ -1,0 +1,13 @@
+# OS
+.DS_Store
+
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+
+# Exercise outputs (created by grads during exercises)
+sandbox/my-first-file.js
+sandbox/mcp-diagram.txt
