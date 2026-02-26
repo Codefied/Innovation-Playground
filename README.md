@@ -14,13 +14,13 @@ Learn Claude Code by using Claude Code. No slides required — this course teach
 4. Study `rolands-setup/` to see what a real production config looks like
 5. Build your own setup as you go
 
+**Important:** This course uses **Claude Code** — the terminal/CLI tool. It is *not* the Claude desktop app or Claude.ai in your browser. Claude Code runs in your terminal and can read, write, and execute code directly in your project.
+
 **The meta insight:** You're learning Claude Code *inside* Claude Code. The tool you're learning is also your teacher.
 
 ---
 
 ## Module 1: Getting Started
-
-*~5 slides / 5-min video segment*
 
 ### 1.1 What is Claude Code?
 
@@ -80,8 +80,6 @@ Once inside Claude Code, try:
 ---
 
 ## Module 2: Teaching Claude Who You Are
-
-*~5 slides / 5-min video segment*
 
 ### 2.1 The Config Hierarchy
 
@@ -154,8 +152,6 @@ Start with the templates in `sandbox/templates/`:
 
 ## Module 3: Superpowers — Skills, Agents & Plugins
 
-*~5 slides / 5-min video segment*
-
 ### 3.1 What Are Agents?
 
 Agents are specialized sub-AI-instances with focused expertise:
@@ -224,8 +220,6 @@ See `sandbox/templates/starter-agent.md` for a template.
 
 ## Module 4: MCP & External Tools
 
-*~5 slides / 5-min video segment*
-
 ### 4.1 What is MCP?
 
 **Model Context Protocol (MCP)** is how Claude Code connects to external systems. Think of it as "USB ports for AI" — a standard way to plug in tools.
@@ -285,8 +279,6 @@ Always start with restrictive permissions and open up as needed.
 
 ## Module 5: The Meta Game
 
-*~5 slides / 5-min video segment*
-
 ### 5.1 The Coaching Loop
 
 The most powerful use of Claude Code is the feedback loop:
@@ -321,14 +313,15 @@ As you grow, you'll want to:
 3. **Set up hooks** that automate repetitive checks
 4. **Share configs** with teammates so everyone levels up
 
-### 5.4 The 30-Day Plan
+### 5.4 Your Next Moves
 
-| Week | Focus | Goal |
-|------|-------|------|
-| 1 | Exercises 1-2 | Comfortable with basics, own CLAUDE.md |
-| 2 | Exercise 3 | Understand agents, explore real configs |
-| 3 | Exercise 4 | MCP concepts, team-specific tools |
-| 4 | Exercise 5 | Self-audit, first custom agent, share learnings |
+Don't overthink the plan. After completing the exercises, pick 3 concrete next actions:
+
+| Timeframe | Example moves |
+|-----------|--------------|
+| This week | Use Claude Code to understand your team's codebase |
+| Next week | Set up an MCP connection to a tool you use daily |
+| This month | Build an agent for a task you do repeatedly |
 
 ### 5.5 What Great Looks Like
 
@@ -387,7 +380,7 @@ ai-grad-course/
       starter-claude.md              # CLAUDE.md template
       starter-rules.md               # Rules file template
       starter-agent.md               # Agent file template
-  rolands-setup/                     # Real production config (sanitized)
+  rolands-setup/                     # Read-only reference example of a real config
     CLAUDE.md                        # Sanitized global CLAUDE.md
     settings.json                    # Sanitized settings
     rules/                           # All 8 rule files (safe as-is)

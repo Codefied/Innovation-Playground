@@ -52,19 +52,23 @@
 // Update your config based on what you discover.
 
 
-// --- TASK 4: Build a Team-Specific Agent ---
+// --- TASK 4: Design a Dream Agent ---
 //
-// Ask Claude: "Help me design an agent for my team. Here's
-//              what my team does: [describe your team's work].
-//              What would a helpful agent look like?"
+// Ask Claude: "Help me design an agent I wish existed for my
+//              team. Here's what my team does: [describe your
+//              team's work]. What would be the most useful
+//              agent to have?"
 //
-// Good agent ideas for new team members:
+// You might not have enough team context to build this yet —
+// that's fine. The goal is to DESIGN it, not ship it. Think
+// about what would save you (or your team) the most time:
 //   - Codebase navigator: "Explain how [feature] works"
 //   - PR preparer: "Format this change as a good PR"
 //   - Onboarding helper: "Walk me through [team process]"
 //   - Style enforcer: "Review this code for team conventions"
 //
-// Create the agent file and save it to ~/.claude/agents/
+// Save the design to ~/.claude/agents/ — you can refine it
+// after you've been on the team for a few weeks.
 // Concept: The best agents encode tribal knowledge.
 
 
@@ -79,20 +83,20 @@
 // Concept: Hooks automate the checks you'd otherwise forget.
 
 
-// --- TASK 6: Create Your 30-Day Plan ---
+// --- TASK 6: Your Next 3 Moves ---
 //
 // Ask Claude: "Based on everything I've learned in these
-//              exercises, help me create a 30-day plan for
-//              becoming proficient with Claude Code at work.
-//              Be specific about what to practice each week."
+//              exercises, what are the 3 most impactful things
+//              I should do next to level up with Claude Code
+//              at work? Be specific and practical."
 //
-// A good plan looks like:
-//   Week 1: Daily use for reading/understanding code
-//   Week 2: Start writing code with Claude, use TDD
-//   Week 3: Set up agents and hooks for team workflow
-//   Week 4: Teach a teammate, share your config
+// Don't overthink this — you don't need a rigid 30-day plan.
+// You need 3 concrete next actions you'll actually do:
+//   - Maybe it's "use Claude Code to understand my team's codebase"
+//   - Maybe it's "set up an MCP connection to [tool I use daily]"
+//   - Maybe it's "build an agent for [repetitive task]"
 //
-// Save the plan somewhere you'll actually look at it.
+// Save them somewhere you'll actually look at them.
 // Concept: Consistency > intensity. 30 minutes daily > 8-hour binges.
 
 
@@ -122,9 +126,9 @@ const tasks = [
   "Self-audit your config",
   "Compare your config to Roland's",
   "The coaching loop (real task)",
-  "Build a team-specific agent",
+  "Design a dream agent",
   "Write your first hook",
-  "Create your 30-day plan",
+  "Your next 3 moves",
   "Pay it forward — teach a teammate"
 ]
 

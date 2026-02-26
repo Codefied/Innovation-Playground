@@ -21,6 +21,10 @@ REPO_URL="https://github.com/Codefied/Innovation-Playground.git"
 COURSE_DIR="$HOME/ai-grad-course"
 CLAUDE_DIR="$HOME/.claude"
 
+# NOTE: This course uses Claude Code — the terminal/CLI version of Claude.
+# It is NOT the same as the Claude desktop app (Claude.ai).
+# Claude Code runs in your terminal and can read/write files directly.
+
 # --- Colors ---
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -55,6 +59,9 @@ echo -e "${BOLD}============================================${NC}"
 echo ""
 echo "  This installer will set up everything you"
 echo "  need to start learning Claude Code."
+echo ""
+echo -e "  ${YELLOW}Note: Claude Code is the terminal/CLI tool.${NC}"
+echo "  It is NOT the Claude desktop app (Claude.ai)."
 echo ""
 echo "  It will:"
 echo "    - Verify Node.js 18+ and git are installed"
@@ -121,13 +128,24 @@ if command -v claude &> /dev/null; then
     print_ok "Claude Code already installed ($(claude --version 2>/dev/null || echo 'version unknown'))"
 else
     echo "  Running: npm install -g @anthropic-ai/claude-code"
-    npm install -g @anthropic-ai/claude-code
-    if command -v claude &> /dev/null; then
+    if npm install -g @anthropic-ai/claude-code 2>/dev/null; then
         print_ok "Claude Code installed successfully"
     else
-        print_fail "Claude Code installation failed."
-        echo "  Try running manually: npm install -g @anthropic-ai/claude-code"
-        exit 1
+        print_warn "Permission error — retrying with sudo..."
+        echo "  (This is normal on Macs. You may be prompted for your password.)"
+        sudo npm install -g @anthropic-ai/claude-code
+        if command -v claude &> /dev/null; then
+            print_ok "Claude Code installed successfully (with sudo)"
+        else
+            print_fail "Claude Code installation failed."
+            echo ""
+            echo "  Try running manually:"
+            echo "    sudo npm install -g @anthropic-ai/claude-code"
+            echo ""
+            echo "  If that still fails, you may need to fix npm permissions:"
+            echo "    https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally"
+            exit 1
+        fi
     fi
 fi
 

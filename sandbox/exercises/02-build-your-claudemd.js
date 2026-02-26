@@ -76,8 +76,15 @@
 //
 // Claude should reflect back what you put in your CLAUDE.md.
 // If it doesn't, check that the files are in the right locations.
+//
+// HEADS UP: When you reopen Claude Code, it won't remember your
+// previous conversation — that's how sessions work. Your CONFIG
+// persists (CLAUDE.md, rules), but conversation history does not.
+// To pick up where you left off, tell Claude:
+//   "I'm working on the ai-grad-course, Exercise 02 Task 6."
+//
 // Concept: Config is loaded fresh each session. Changes take
-// effect immediately on restart.
+// effect immediately on restart. Conversation memory does not carry over.
 
 
 // --- TASK 7: The Settings File ---
@@ -90,6 +97,11 @@
 //   - permissions.defaultMode: plan vs normal mode
 //   - hooks: Automation that runs before/after tool use
 //   - enabledPlugins: Installed plugin packages
+//
+// YOUR ACTION ITEM: Your settings.json can stay mostly empty for now.
+// The one thing worth adding today is "defaultMode": "plan" — this
+// makes Claude explain its plan before acting, which is safer while
+// you're learning. Everything else (hooks, plugins) comes later.
 //
 // Concept: settings.json controls behavior. CLAUDE.md controls knowledge.
 

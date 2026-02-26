@@ -83,6 +83,10 @@
 // Ask Claude: "Read the template at sandbox/templates/starter-agent.md
 //              and help me create a custom agent for [your use case]"
 //
+// BEFORE YOU START: Ask yourself — "Will I do this task repeatedly,
+// or just once?" If it's a one-time thing, it's a project, not an
+// agent. Agents are for tasks you'll run again and again.
+//
 // Ideas for your first agent:
 //   - A code explainer that breaks down complex functions
 //   - A documentation writer for your team's style
@@ -100,6 +104,11 @@
 //
 // Iterate: Was the output useful? What would you change in the
 // agent's system prompt to make it better?
+//
+// TIP: If you get bored reading your agent's output, it's too long.
+// Good agent output is punchy and scannable. Tell your agent to be
+// concise in its system prompt, and iterate until the output is
+// something you'd actually read every time.
 //
 // Concept: Agent development is iterative. Write, test, improve.
 

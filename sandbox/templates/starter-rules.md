@@ -1,5 +1,11 @@
 # Coding Style
 
+<!-- NOTE: This template uses JavaScript/TypeScript conventions as examples.
+     If your stack is different (Python, Ruby, Go, etc.) or you don't have
+     a stack yet — start with the general principles (immutability, error
+     handling, file organization) and update the specifics later as you
+     learn what your team uses. -->
+
 ## Naming Conventions
 
 - **Variables**: camelCase (`userName`, `isActive`)

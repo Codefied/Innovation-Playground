@@ -31,7 +31,10 @@
 // Ask Claude: "What MCP tools are currently available in this
 //              session? List them and explain what each does."
 //
-// Depending on your plugins, you might see tools like:
+// NOTE: You may not have any MCP tools configured yet — that's
+// completely fine and expected for new grads. If you see nothing,
+// that just means no plugins or MCP servers are installed. Here's
+// what you'd see if they were:
 //   mcp__playwright__browser_navigate
 //   mcp__playwright__browser_snapshot
 //
@@ -39,20 +42,21 @@
 // Concept: MCP tools appear alongside built-in tools (Read, Write, etc.)
 
 
-// --- TASK 3: How Plugins Enable MCP ---
+// --- TASK 3: How Plugins Bundle Everything ---
 //
-// Ask Claude: "Read rolands-setup/settings.json and explain
-//              the enabledPlugins section. How do plugins
-//              relate to MCP servers?"
+// Ask Claude: "Explain how a single plugin can add MCP tools,
+//              agents, skills, and rules all at once. Use the
+//              plugins in rolands-setup/settings.json as examples."
 //
-// Plugins can bundle:
-//   - MCP server connections (tools)
-//   - Agent definitions
-//   - Skills (slash commands)
-//   - Rules and config
+// The key insight isn't the settings file itself (you saw that
+// in Exercise 02) — it's understanding that plugins are BUNDLES:
+//   - MCP server connections (new tools)
+//   - Agent definitions (new specialists)
+//   - Skills (new slash commands)
+//   - Rules and config (new guardrails)
 //
-// Concept: Plugins are packages that install MCP servers,
-// agents, skills, and rules all at once.
+// One install = multiple capabilities added at once.
+// Concept: Plugins are the fastest way to extend Claude Code.
 
 
 // --- TASK 4: The Permission Model ---

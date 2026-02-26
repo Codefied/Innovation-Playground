@@ -30,7 +30,10 @@
 //
 // Ask Claude: "Read the README.md file and summarize it for me"
 //
-// Notice how Claude reads the actual file from disk, not from memory.
+// After Claude summarizes, try opening README.md yourself (in a text
+// editor or Finder). Is there more content than Claude showed you?
+// Claude reads the real file, but a summary is still a summary.
+//
 // This is different from ChatGPT — Claude Code sees your real files.
 // Concept: The Read tool lets Claude see any file in your project.
 
