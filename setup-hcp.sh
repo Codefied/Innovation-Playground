@@ -20,20 +20,6 @@ echo ""
 # --- SECTION 1: Prerequisites ---
 echo "--- Section 1: Prerequisites ---"
 
-# Check Node.js version (Claude Code requires 18+)
-if command -v node &> /dev/null; then
-    NODE_VERSION=$(node -v | cut -d'v' -f2 | cut -d'.' -f1)
-    if [ "$NODE_VERSION" -ge 18 ]; then
-        echo "  [OK] Node.js $(node -v) installed"
-    else
-        echo "  [!!] Node.js $(node -v) is too old. Need 18+."
-        echo "       Install via: brew install node"
-    fi
-else
-    echo "  [!!] Node.js not found."
-    echo "       Install via: brew install node"
-fi
-
 # Check git
 if command -v git &> /dev/null; then
     echo "  [OK] Git $(git --version | cut -d' ' -f3) installed"
@@ -47,9 +33,9 @@ echo ""
 # --- SECTION 2: Install Claude Code ---
 echo "--- Section 2: Install Claude Code ---"
 echo ""
-echo "  Run this command to install Claude Code globally:"
+echo "  Run this command to install Claude Code:"
 echo ""
-echo "    npm install -g @anthropic-ai/claude-code"
+echo "    curl -fsSL https://claude.ai/install.sh | bash"
 echo ""
 echo "  After installation, verify with:"
 echo ""

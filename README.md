@@ -36,8 +36,8 @@ Think of it as pair programming with an AI that never gets tired and reads docum
 ### 1.2 Installation
 
 ```bash
-# Install Claude Code (requires Node.js 18+)
-npm install -g @anthropic-ai/claude-code
+# Install Claude Code (one command, no prerequisites)
+curl -fsSL https://claude.ai/install.sh | bash
 
 # Verify installation
 claude --version

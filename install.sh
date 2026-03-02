@@ -9,8 +9,8 @@ set -e
 #   curl -sSL https://raw.githubusercontent.com/Codefied/Innovation-Playground/main/install.sh | bash
 #
 # What this does:
-#   1. Checks prerequisites (Node.js 18+, git)
-#   2. Installs Claude Code globally
+#   1. Checks prerequisites (git)
+#   2. Installs Claude Code via native installer
 #   3. Clones the course repo to ~/ai-grad-course
 #   4. Sets up ~/.claude/ config directory with starter templates
 #   5. Prints next steps
@@ -35,7 +35,7 @@ NC='\033[0m' # No Color
 
 print_step() {
     echo ""
-    echo -e "${BLUE}${BOLD}[$1/6]${NC} ${BOLD}$2${NC}"
+    echo -e "${BLUE}${BOLD}[$1/5]${NC} ${BOLD}$2${NC}"
     echo "─────────────────────────────────────────"
 }
 
@@ -64,49 +64,16 @@ echo -e "  ${YELLOW}Note: Claude Code is the terminal/CLI tool.${NC}"
 echo "  It is NOT the Claude desktop app (Claude.ai)."
 echo ""
 echo "  It will:"
-echo "    - Verify Node.js 18+ and git are installed"
+echo "    - Verify git is installed"
 echo "    - Install Claude Code (the AI coding tool)"
 echo "    - Clone the course materials"
 echo "    - Set up your Claude Code config"
 echo ""
 
 # ===========================================================
-# Step 1: Check Node.js
+# Step 1: Check git
 # ===========================================================
-print_step 1 "Checking Node.js..."
-
-if command -v node &> /dev/null; then
-    NODE_VERSION=$(node -v | cut -d'v' -f2 | cut -d'.' -f1)
-    if [ "$NODE_VERSION" -ge 18 ]; then
-        print_ok "Node.js $(node -v) installed"
-    else
-        print_fail "Node.js $(node -v) is too old. Need version 18+."
-        echo ""
-        echo "  Install the latest version:"
-        echo "    brew install node"
-        echo ""
-        echo "  Or use nvm:"
-        echo "    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash"
-        echo "    nvm install 20"
-        echo ""
-        exit 1
-    fi
-else
-    print_fail "Node.js not found."
-    echo ""
-    echo "  Install it with Homebrew:"
-    echo "    brew install node"
-    echo ""
-    echo "  Don't have Homebrew? Install it first:"
-    echo "    /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
-    echo ""
-    exit 1
-fi
-
-# ===========================================================
-# Step 2: Check git
-# ===========================================================
-print_step 2 "Checking git..."
+print_step 1 "Checking git..."
 
 if command -v git &> /dev/null; then
     print_ok "Git $(git --version | cut -d' ' -f3) installed"
@@ -120,39 +87,30 @@ else
 fi
 
 # ===========================================================
-# Step 3: Install Claude Code
+# Step 2: Install Claude Code
 # ===========================================================
-print_step 3 "Installing Claude Code..."
+print_step 2 "Installing Claude Code..."
 
 if command -v claude &> /dev/null; then
     print_ok "Claude Code already installed ($(claude --version 2>/dev/null || echo 'version unknown'))"
 else
-    echo "  Running: npm install -g @anthropic-ai/claude-code"
-    if npm install -g @anthropic-ai/claude-code 2>/dev/null; then
+    echo "  Running: curl -fsSL https://claude.ai/install.sh | bash"
+    if curl -fsSL https://claude.ai/install.sh | bash; then
         print_ok "Claude Code installed successfully"
     else
-        print_warn "Permission error — retrying with sudo..."
-        echo "  (This is normal on Macs. You may be prompted for your password.)"
-        sudo npm install -g @anthropic-ai/claude-code
-        if command -v claude &> /dev/null; then
-            print_ok "Claude Code installed successfully (with sudo)"
-        else
-            print_fail "Claude Code installation failed."
-            echo ""
-            echo "  Try running manually:"
-            echo "    sudo npm install -g @anthropic-ai/claude-code"
-            echo ""
-            echo "  If that still fails, you may need to fix npm permissions:"
-            echo "    https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally"
-            exit 1
-        fi
+        print_fail "Claude Code installation failed."
+        echo ""
+        echo "  Try running manually:"
+        echo "    curl -fsSL https://claude.ai/install.sh | bash"
+        echo ""
+        exit 1
     fi
 fi
 
 # ===========================================================
-# Step 4: Clone the course repo
+# Step 3: Clone the course repo
 # ===========================================================
-print_step 4 "Cloning course materials..."
+print_step 3 "Cloning course materials..."
 
 if [ -d "$COURSE_DIR" ]; then
     print_warn "Directory $COURSE_DIR already exists."
@@ -166,9 +124,9 @@ else
 fi
 
 # ===========================================================
-# Step 5: Set up ~/.claude/ config
+# Step 4: Set up ~/.claude/ config
 # ===========================================================
-print_step 5 "Setting up Claude Code config..."
+print_step 4 "Setting up Claude Code config..."
 
 # Create directory structure
 mkdir -p "$CLAUDE_DIR/rules"
@@ -201,9 +159,9 @@ else
 fi
 
 # ===========================================================
-# Step 6: Done!
+# Step 5: Done!
 # ===========================================================
-print_step 6 "Setup complete!"
+print_step 5 "Setup complete!"
 
 echo ""
 echo -e "${GREEN}${BOLD}  You're almost ready to start learning!${NC}"
@@ -227,7 +185,7 @@ echo "     Then type: ${BOLD}Help me with exercise 1${NC}"
 echo ""
 echo "─────────────────────────────────────────"
 echo -e "  ${BOLD}What got installed:${NC}"
-echo "    Claude Code      → $(which claude 2>/dev/null || echo 'claude (global npm package)')"
+echo "    Claude Code      → $(which claude 2>/dev/null || echo 'claude')"
 echo "    Course materials  → ~/ai-grad-course/"
 echo "    Your config       → ~/.claude/"
 echo "─────────────────────────────────────────"
